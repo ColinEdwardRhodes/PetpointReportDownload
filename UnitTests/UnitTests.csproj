@@ -53,6 +53,12 @@
     <Compile Include="CommandLineProcessorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MainApp\Lollypop.csproj">
+      <Project>{d040d860-381d-47d4-b1b5-a68f00c4dc99}</Project>
+      <Name>Lollypop</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
