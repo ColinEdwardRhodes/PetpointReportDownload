@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace Lollypop
 {
@@ -29,38 +30,43 @@ namespace Lollypop
             }
         }
 
+        /// <summary>
+        /// Name of the shelter for petpoint
+        /// </summary>
         public string ShelterId
         {
             get
             {
-                return "usny2";
+                return ConfigurationManager.AppSettings["ShelterId"];
             }
         }
 
+        /// <summary>
+        /// User name for pet point
+        /// </summary>
         public string UserName
         {
             get
             {
-                return "";
+                return ConfigurationManager.AppSettings["UserName"];
             }
         }
 
+        /// <summary>
+        /// Password for petpoint
+        /// </summary>
         public string Password
         {
             get
             {
-                return "";
+                return ConfigurationManager.AppSettings["Password"];
             }
         }
 
-        public string ReportName
-        {
-            get
-            {
-                return "Animal: Intake with Results Extended";
-            }
-        }
-
+        /// <summary>
+        /// How long to wait for a report to download
+        /// before we close the browser window.
+        /// </summary>
         public int ReportWaitTimeSeconds
         {
             get

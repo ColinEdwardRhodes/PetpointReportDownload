@@ -11,26 +11,19 @@ namespace Lollypop
     /// </summary>
     public class ReportFactory 
     {
-        public static Report GetReport(string reportName, string[] args)
+        /// <summary>
+        /// Build a report from the report file.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public static Report GetReport(string reportFileName)
         {
+            ReportConfigurationFileReader reader = new ReportConfigurationFileReader(reportFileName);
+
             return new Report()
             {
-                Name = "Animal: Intake with Results Extended",
-                Arguments = new List<ReportArgument>()
-                {
-                    new ReportArgument() { 
-                        Name = "Intake Start Date:",
-                        XPath = "//*[@id=\"calendar1_Date1\"]",
-                        Value = DateTime.Now.AddDays(-1).ToString("MM/dd/yyyy"),
-                        UseDefault = false
-                    },
-                    new ReportArgument() { 
-                        Name = "Intake End Date:",
-                        XPath = "//*[@id=\"calendar2_Date1\"]",
-                        Value = DateTime.Now.AddDays(+1).ToString("MM/dd/yyyy"),
-                        UseDefault = false
-                    }
-                }
+                Name = reader.Name,
+                Arguments = reader.ReportArguments
             };
         }
     }

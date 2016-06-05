@@ -22,14 +22,16 @@ namespace Lollypop
         static int Main(string[] args)
         {
             var result = 1;
+            CommandLineProcessor cmdProcessor = new CommandLineProcessor(args);
 
             try
             {
                 using (IWebDriver driver = WebDriverInit())
                 {
                     DownloadReport(
-                        driver, 
-                        ReportFactory.GetReport(Configuration.Instance.ReportName, args));
+                        driver,
+                        cmdProcessor,
+                        ReportFactory.GetReport(cmdProcessor.ReportFileName));
                 }
             }
             catch (Exception ex)
@@ -46,13 +48,13 @@ namespace Lollypop
         /// </summary>
         /// <param name="driver"></param>
         /// <param name="report"></param>
-        private static void DownloadReport(IWebDriver driver, Report report)
+        private static void DownloadReport(IWebDriver driver, CommandLineProcessor cmdProcessor, Report report)
         {
             GoToPetPoint(driver);
             Login(driver);
             NavigateToReports(driver);
             OpenReport(driver, report);
-            InstantiateReport(driver, report);
+            InstantiateReport(driver, cmdProcessor, report);
             RunReport(driver, report);
         }
 
@@ -76,15 +78,16 @@ namespace Lollypop
         /// </summary>
         /// <param name="driver"></param>
         /// <param name="report"></param>
-        private static void InstantiateReport(IWebDriver driver, Report report)
-        {
+        private static void InstantiateReport(IWebDriver driver, CommandLineProcessor cmdProcessor, Report report)
+        {            
             report.Arguments.ForEach(r =>
             {
-                var argElt = driver.FindElement(By.XPath(r.XPath));
                 if (!r.UseDefault)
                 {
+                    var argElt = driver.FindElement(By.XPath(r.XPath));
+
                     argElt.Clear();
-                    argElt.SendKeys(r.Value);
+                    argElt.SendKeys(cmdProcessor.ReportValues[r.Name]);
                 }
             });
         }
