@@ -120,7 +120,7 @@ namespace Lollypop
         /// <param name="driver"></param>
         private static void GoToPetPoint(IWebDriver driver)
         {
-            driver.Navigate().GoToUrl("http://www.petpoint.com/login");
+            driver.Navigate().GoToUrl(Configuration.Instance.LoginPage);
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Lollypop
 {
@@ -20,6 +21,7 @@ namespace Lollypop
         public ReportConfigurationFileReader(string reportFileName)
         {
             this.reportFileName = reportFileName;
+            ReportArguments = new List<ReportArgument>();
             this.ReadFile(reportFileName);
         }
 
@@ -29,7 +31,57 @@ namespace Lollypop
         /// <param name="reportFileName"></param>
         private void ReadFile(string reportFileName)
         {
-            throw new NotImplementedException();
+            using (StreamReader reader = new StreamReader(reportFileName))
+            {
+                int lineNo = 1;
+                int argumentLine = -1;
+                ReportArgument currentArgument = new ReportArgument();
+
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.TrimStart().StartsWith("#"))
+                        continue;
+
+                    lineNo++;
+
+                    if (!line.StartsWith("\t"))
+                    {
+                        Name = line;
+                    }
+                    else if (line.StartsWith("\t\t"))
+                    {
+                        switch (argumentLine)
+                        {
+                            case 1:
+                                // xpath
+                                currentArgument.XPath = line.Trim();
+                                break;
+                            case 2:
+                                // value
+                                currentArgument.Value = line.Trim();
+                                break;
+                            case 3:
+                                // use default
+                                currentArgument.UseDefault = Boolean.Parse(line.Trim());
+                                ReportArguments.Add(currentArgument);
+                                currentArgument = new ReportArgument();
+                                break;
+                            case 4:
+                                // error!
+                                throw new Exception("Invalid config file at line " + line);
+                        }
+                        argumentLine++;
+
+                    } else if (line.StartsWith("\t"))
+                    {
+                        // We are processing a new argument.
+                        var argumentName = line.TrimStart();
+                        argumentLine = 1;
+                        currentArgument.Name = line.Trim();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -37,10 +89,8 @@ namespace Lollypop
         /// </summary>
         public string Name
         {
-            get
-            {
-                return "Animal: Intake with Results Extended";
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -49,24 +99,7 @@ namespace Lollypop
         /// </summary>
         public List<ReportArgument> ReportArguments
         {
-            get
-            {
-                return new List<ReportArgument>()
-                {
-                    new ReportArgument() { 
-                        Name = "Intake Start Date:",
-                        XPath = "//*[@id=\"calendar1_Date1\"]",
-                        Value = "",
-                        UseDefault = false
-                    },
-                    new ReportArgument() { 
-                        Name = "Intake End Date:",
-                        XPath = "//*[@id=\"calendar2_Date1\"]",
-                        Value = "",
-                        UseDefault = false
-                    }
-                };
-            }
+           get; set;
         }
     }
 }

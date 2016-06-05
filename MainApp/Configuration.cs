@@ -71,7 +71,18 @@ namespace Lollypop
         {
             get
             {
-                return 20;
+                return Int32.Parse(ConfigurationManager.AppSettings["ReportWaitTimeSeconds"]);
+            }
+        }
+
+        /// <summary>
+        /// Login page for petpoint.
+        /// </summary>
+        public Uri LoginPage
+        {
+            get
+            {
+                return new Uri(ConfigurationManager.AppSettings["LoginPage"]);
             }
         }
     }
