@@ -84,10 +84,31 @@ namespace Lollypop
             {
                 if (!r.UseDefault)
                 {
+                    var value = r.Value;
+                    if (cmdProcessor.ReportValues.ContainsKey(r.Name))
+                    {
+                        value = cmdProcessor.ReportValues[r.Name];
+                    }
+
                     var argElt = driver.FindElement(By.XPath(r.XPath));
 
-                    argElt.Clear();
-                    argElt.SendKeys(cmdProcessor.ReportValues[r.Name]);
+                    if (argElt.TagName.ToLower() == "select")
+                    {
+                        // Drop it down
+                        argElt.Click();
+                        var elt = argElt.FindElement(
+                            By.XPath( "//option[contains(text(), " + value + ")]"));
+
+                        if (elt != null)
+                        {
+                            elt.Click();
+                        }
+                    }
+                    else
+                    {
+                        argElt.Clear();
+                        argElt.SendKeys(value);
+                    }
                 }
             });
         }

@@ -10,4 +10,7 @@
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>/p "Intake Start Date=03/20/2015" /p "Intake End Date=03/22/2015"  /r  ../../SampleConfig.txt</StartArguments>
+  </PropertyGroup>
 </Project>
