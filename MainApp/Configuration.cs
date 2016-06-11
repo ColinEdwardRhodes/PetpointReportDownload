@@ -85,5 +85,14 @@ namespace Lollypop
                 return new Uri(ConfigurationManager.AppSettings["LoginPage"]);
             }
         }
+
+        public bool UseChrome
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["Browser"].ToString().ToLower() ==
+                    "chrome";
+            }
+        }
     }
 }

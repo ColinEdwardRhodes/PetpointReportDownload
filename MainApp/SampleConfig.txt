@@ -1,16 +1,13 @@
-﻿#
-# The name of the report has zero tabs in front of it.
-#
-Animal: Intake with Results Extended
+﻿Animal: Intake with Results Extended
 	# the intake start date
 	Intake Start Date
 		//*[@id="calendar1_Date1"]
-		Default
+		03/20/2010
 		False
 	# The intake end date
 	Intake End Date
 		//*[@id="calendar2_Date1"]
-		Default
+		03/20/2011
 		False
 	# DOA?
 	DOA

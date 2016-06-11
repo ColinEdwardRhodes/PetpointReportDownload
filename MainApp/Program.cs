@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,7 @@ namespace Lollypop
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception thrown " + ex.ToString());
                 result = 0;
             }
 
@@ -130,7 +133,22 @@ namespace Lollypop
         /// <returns></returns>
         static IWebDriver WebDriverInit()
         {
-            var driver = new ChromeDriver();
+            IWebDriver driver = null;
+            if (!Configuration.Instance.UseChrome)
+            {
+                InternetExplorerOptions options = new InternetExplorerOptions();
+                options.EnableNativeEvents = true;
+                options.UnexpectedAlertBehavior = InternetExplorerUnexpectedAlertBehavior.Accept;
+                options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
+                options.EnablePersistentHover = true;
+
+                driver = new InternetExplorerDriver(options);
+            }
+            else
+            {
+                driver = new ChromeDriver();
+            }
+            
             driver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 60));
             return driver;
         }
