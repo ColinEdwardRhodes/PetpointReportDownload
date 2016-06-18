@@ -2,12 +2,12 @@
 	# the intake start date
 	Intake Start Date
 		//*[@id="calendar1_Date1"]
-		03/20/2010
+		%LAST_3%
 		False
 	# The intake end date
 	Intake End Date
 		//*[@id="calendar2_Date1"]
-		03/20/2011
+		%LAST_0%
 		False
 	# DOA?
 	DOA

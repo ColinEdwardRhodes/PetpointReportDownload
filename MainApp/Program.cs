@@ -90,7 +90,7 @@ namespace Lollypop
                     var value = r.Value;
                     if (cmdProcessor.ReportValues.ContainsKey(r.Name))
                     {
-                        value = cmdProcessor.ReportValues[r.Name];
+                        value = FormulaProcessor.Process(cmdProcessor.ReportValues[r.Name]);
                     }
 
                     var argElt = driver.FindElement(By.XPath(r.XPath));

@@ -24,7 +24,19 @@ namespace Lollypop
         /// <summary>
         /// The value we would like to set on the xpath
         /// </summary>
-        public string Value { get; set; }
+        private string actualValue;
+        public string Value
+        {
+            get
+            {
+                return FormulaProcessor.Process(actualValue);
+            }
+
+            set
+            {
+                actualValue = value;
+            }
+        }
 
         /// <summary>
         /// If set, don't apply the value and use the form default
