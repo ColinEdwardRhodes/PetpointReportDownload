@@ -1,0 +1,12 @@
+Animal: Outcome Extended
+	# the intake start date
+	Intake Start Date
+		//*[@id="calendar1_Date1"]
+		%LAST_30%
+		False
+	# The intake end date
+	Intake End Date
+		//*[@id="calendar2_Date1"]
+		%LAST_0%
+		False
+	
