@@ -5,7 +5,7 @@ An automated report downloader for petpoint.com using selenium and c#.
 
 ## Configuration Files
 
-To run a report you must first setup a configuration file.
+To run a report you must first setup a configuration file.  The configuration file specifies the name of the report and the fields that can be used within it.  A simple text format is used - tabs are important!
 
 ###Simple Sample Configuration File
 
