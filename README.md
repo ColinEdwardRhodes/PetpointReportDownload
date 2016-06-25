@@ -49,3 +49,10 @@ Animal: Intake with Results Extended
 	
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+## Command Line
+
+* /r - specify the report name
+* /p - specify a parameter override value
+
+### Sample
+/p "Intake Start Date=%LAST_2%" /p "Intake End Date=%LAST_0%"  /r  ../../AnimalIntakeWithResultsExtended
