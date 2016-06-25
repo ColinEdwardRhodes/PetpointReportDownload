@@ -1,10 +1,13 @@
 PetpointReportDownload
 ======================
 
-An automated report downloader for petpoint.com
+An automated report downloader for petpoint.com using selenium and c#.
 
-Simple Sample Configuration File
---------------------------------
+## Configuration Files
+
+To run a report you must first setup a configuration file.
+
+###Simple Sample Configuration File
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
@@ -23,8 +26,8 @@ Animal: Intake with Results Extended
         False
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Advanced Sample Configuration File
---------------------------------
+###Advanced Sample Configuration File
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Animal: Intake with Results Extended
