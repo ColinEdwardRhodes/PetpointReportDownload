@@ -11,6 +11,6 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartArguments>/p "Intake Start Date=%25LAST_2%25" /p "Intake End Date=%25LAST_0%25"  /r  ../../SampleConfig.txt</StartArguments>
+    <StartArguments>/p "Intake Start Date=%25LAST_2%25" /p "Intake End Date=%25LAST_0%25"  /r  ../../AnimalIntakeWithResultsExtended.txt</StartArguments>
   </PropertyGroup>
 </Project>
